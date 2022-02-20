@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./styles.css" />
+		<title>Saketa - Employee Directory</title>
+	</head>
+	<body>
+		<header>
+			<div class="brand">
+				<img src="./images/logo.png" alt="Logo" />
+				<div class="title">
+					<h1>Employee Directory</h1>
+					<p>The Ultimate People Directory Experience</p>
+				</div>
+			</div>
+			<div class="user">
+				<h1 class="welcome">Welcome,</h1>
+				<h1>Akash Doppalapudi</h1>
+				<img src="./images/users/akash.jpg" alt="profile image" />
+			</div>
+		</header>
+		<main>
+			<div class="sidebar">
+				<div class="departments">
+					<h2>Departments</h2>
+					<ul>
+						<li id="it">
+							IT <span>(</span><span id="itNo"></span><span>)</span>
+						</li>
+						<li id="hr">
+							Human Resources <span>(</span><span id="hrNo"></span
+							><span>)</span>
+						</li>
+						<li id="md">
+							MD <span>(</span><span id="mdNo"></span><span>)</span>
+						</li>
+						<li id="sales">
+							Sales <span>(</span><span id="sNo"></span><span>)</span>
+						</li>
+					</ul>
+				</div>
+				<div class="offices">
+					<h2>Offices</h2>
+					<ul>
+						<li id="seattle">
+							Seattle <span>(</span><span id="stNo"></span><span>)</span>
+						</li>
+						<li id="india">
+							India <span>(</span><span id="inNo"></span><span>)</span>
+						</li>
+					</ul>
+				</div>
+				<div class="job-titles">
+					<h2>Job Titles</h2>
+					<ul>
+						<li id="sharePoint">
+							SharePoint Practice Head <span>(</span><span id="sphNo"></span
+							><span>)</span>
+						</li>
+						<li id="dotnet">
+							.Net Development Lead <span>(</span><span id="netNo"></span
+							><span>)</span>
+						</li>
+						<li id="recruit">
+							Recruiting Expert <span>(</span><span id="recNo"></span
+							><span>)</span>
+						</li>
+						<li id="bidev">
+							Bi Developer <span>(</span><span id="biNo"></span><span>)</span>
+						</li>
+						<li id="business">
+							Business Analyst <span>(</span><span id="baNo"></span
+							><span>)</span>
+						</li>
+					</ul>
+					<p class="view-more">view more</p>
+				</div>
+			</div>
+			<div class="main-content">
+				<div class="filter">
+					<div class="alphabets">
+						<button class="alpha-btn">
+							<ion-icon name="person"></ion-icon>
+						</button>
+						<button class="alpha-btn">A</button>
+						<button class="alpha-btn">B</button>
+						<button class="alpha-btn">C</button>
+						<button class="alpha-btn">D</button>
+						<button class="alpha-btn">E</button>
+						<button class="alpha-btn">F</button>
+						<button class="alpha-btn">G</button>
+						<button class="alpha-btn">H</button>
+						<button class="alpha-btn">I</button>
+						<button class="alpha-btn">J</button>
+						<button class="alpha-btn">K</button>
+						<button class="alpha-btn">L</button>
+						<button class="alpha-btn">M</button>
+						<button class="alpha-btn">N</button>
+						<button class="alpha-btn">O</button>
+						<button class="alpha-btn">P</button>
+						<button class="alpha-btn">Q</button>
+						<button class="alpha-btn">R</button>
+						<button class="alpha-btn">S</button>
+						<button class="alpha-btn">T</button>
+						<button class="alpha-btn">U</button>
+						<button class="alpha-btn">V</button>
+						<button class="alpha-btn">W</button>
+						<button class="alpha-btn">X</button>
+						<button class="alpha-btn">Y</button>
+						<button class="alpha-btn">Z</button>
+					</div>
+				</div>
+				<div class="employee-list"></div>
+			</div>
+		</main>
+		<script src="./index.js"></script>
+		<script
+			type="module"
+			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+		></script>
+		<script
+			nomodule
+			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+		></script>
+	</body>
+</html>

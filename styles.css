@@ -1,0 +1,127 @@
+@font-face {
+	font-family: 'haboro-sans';
+	src: url('./fonts/haborosansnormregular-webfont.woff2') format('woff2'),
+		url('./fonts/haborosansnormregular-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	padding: 2% 1%;
+	font-family: 'haboro-sans';
+}
+
+h1,
+h2,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	display: grid;
+	grid-template-columns: auto auto;
+	justify-content: space-between;
+	padding-bottom: 1%;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.brand {
+	display: flex;
+}
+
+.brand img {
+	width: 250px;
+}
+
+.title h1 {
+	color: #63cdfc;
+	font-weight: lighter;
+}
+
+.title p {
+	font-size: 18px;
+	color: #737373;
+}
+
+.user {
+	display: inline-flex;
+}
+
+.user h1 {
+	margin: auto 0.2em 0 0;
+	font-size: 1.9em;
+	font-weight: lighter;
+	color: #737373;
+}
+
+.user h1.welcome {
+	color: #63cdfc;
+	font-weight: lighter;
+}
+
+.user img {
+	margin: auto 0 1% 0;
+	width: 50px;
+	height: 50px;
+}
+
+main {
+	display: flex;
+	justify-content: space-between;
+	padding: 2% 0 0 2%;
+}
+
+.sidebar div:not(:first-child) {
+	margin-top: 20%;
+}
+
+.sidebar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.sidebar ul li {
+	color: #8d8d8d;
+	margin: 2% 0;
+	cursor: pointer;
+}
+
+.sidebar div h2 {
+	font-size: 1em;
+}
+
+.view-more {
+	color: #00b0fd;
+	font-size: 0.85em;
+}
+.view-more:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.alphabets {
+	display: inline-block;
+}
+
+.alpha-btn {
+	width: 2em;
+	height: 2em;
+	font-size: 20px;
+	padding: 0;
+	align-items: center;
+	text-align: center;
+	margin: 2px 0;
+	border: none;
+	background: #00b0fd;
+	color: white;
+}
+
+.alpha-btn:hover {
+	background: #00c9fd;
+}
+
+.alpha-btn:active {
+	background: #0097fd;
+}
