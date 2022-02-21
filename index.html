@@ -82,38 +82,147 @@
 			<div class="main-content">
 				<div class="filter">
 					<div class="alphabets">
-						<button class="alpha-btn">
+						<button id="all" class="alpha-btn">
 							<ion-icon name="person"></ion-icon>
 						</button>
-						<button class="alpha-btn">A</button>
-						<button class="alpha-btn">B</button>
-						<button class="alpha-btn">C</button>
-						<button class="alpha-btn">D</button>
-						<button class="alpha-btn">E</button>
-						<button class="alpha-btn">F</button>
-						<button class="alpha-btn">G</button>
-						<button class="alpha-btn">H</button>
-						<button class="alpha-btn">I</button>
-						<button class="alpha-btn">J</button>
-						<button class="alpha-btn">K</button>
-						<button class="alpha-btn">L</button>
-						<button class="alpha-btn">M</button>
-						<button class="alpha-btn">N</button>
-						<button class="alpha-btn">O</button>
-						<button class="alpha-btn">P</button>
-						<button class="alpha-btn">Q</button>
-						<button class="alpha-btn">R</button>
-						<button class="alpha-btn">S</button>
-						<button class="alpha-btn">T</button>
-						<button class="alpha-btn">U</button>
-						<button class="alpha-btn">V</button>
-						<button class="alpha-btn">W</button>
-						<button class="alpha-btn">X</button>
-						<button class="alpha-btn">Y</button>
-						<button class="alpha-btn">Z</button>
+						<button id="a" class="alpha-btn">A</button>
+						<button id="b" class="alpha-btn">B</button>
+						<button id="c" class="alpha-btn">C</button>
+						<button id="d" class="alpha-btn">D</button>
+						<button id="e" class="alpha-btn">E</button>
+						<button id="f" class="alpha-btn">F</button>
+						<button id="g" class="alpha-btn">G</button>
+						<button id="h" class="alpha-btn">H</button>
+						<button id="i" class="alpha-btn">I</button>
+						<button id="j" class="alpha-btn">J</button>
+						<button id="k" class="alpha-btn">K</button>
+						<button id="l" class="alpha-btn">L</button>
+						<button id="m" class="alpha-btn">M</button>
+						<button id="n" class="alpha-btn">N</button>
+						<button id="o" class="alpha-btn">O</button>
+						<button id="p" class="alpha-btn">P</button>
+						<button id="q" class="alpha-btn">Q</button>
+						<button id="r" class="alpha-btn">R</button>
+						<button id="s" class="alpha-btn">S</button>
+						<button id="t" class="alpha-btn">T</button>
+						<button id="u" class="alpha-btn">U</button>
+						<button id="v" class="alpha-btn">V</button>
+						<button id="w" class="alpha-btn">W</button>
+						<button id="x" class="alpha-btn">X</button>
+						<button id="y" class="alpha-btn">Y</button>
+						<button id="z" class="alpha-btn">Z</button>
+					</div>
+					<div class="search-add">
+						<form class="search">
+							<label for="search-text">Search</label>
+							<div class="search-container">
+								<input
+									id="search-field"
+									type="text"
+									placeholder="Enter any keyword"
+								/>
+								<ion-icon class="search-icon" name="search-outline"></ion-icon>
+							</div>
+							<button class="clear">Clear</button>
+							<label for="filter">Filter by</label>
+							<select name="filters" id="filters">
+								<option value="firstName">First Name</option>
+								<option value="lastName">Last Name</option>
+								<option value="preferredName" selected="selected">
+									Prefrred Name
+								</option>
+								<option value="email">Email</option>
+								<option value="jobTitle">Job Title</option>
+								<option value="office">Office</option>
+								<option value="department">Department</option>
+								<option value="phoneNumber">Phone Number</option>
+								<option value="skypeId">Skype ID</option>
+							</select>
+						</form>
+						<button class="add-employee-btn">Add Employee</button>
 					</div>
 				</div>
-				<div class="employee-list"></div>
+				<p class="note">
+					<span>Note : </span>Please use the advance filter options to refine
+					your results.
+				</p>
+				<div class="employee-list">
+					<div class="employee">
+						<img src="./images/users/akash.jpg" alt="Employee Image" />
+						<div class="employee-details">
+							<h3>Akash Doppalapudi</h3>
+							<p>.NET Development Lead</p>
+							<p>IT Department</p>
+							<div class="icons">
+								<ion-icon name="call"></ion-icon>
+								<ion-icon name="mail"></ion-icon>
+								<ion-icon name="text"></ion-icon>
+								<ion-icon name="star"></ion-icon>
+								<ion-icon name="heart"></ion-icon>
+							</div>
+						</div>
+					</div>
+					<div class="employee">
+						<img src="./images/users/akash.jpg" alt="Employee Image" />
+						<div class="employee-details">
+							<h3>Akash Doppalapudi</h3>
+							<p>.NET Development Lead</p>
+							<p>IT Department</p>
+							<div class="icons">
+								<ion-icon name="call"></ion-icon>
+								<ion-icon name="mail"></ion-icon>
+								<ion-icon name="text"></ion-icon>
+								<ion-icon name="star"></ion-icon>
+								<ion-icon name="heart"></ion-icon>
+							</div>
+						</div>
+					</div>
+					<div class="employee">
+						<img src="./images/users/akash.jpg" alt="Employee Image" />
+						<div class="employee-details">
+							<h3>Akash Doppalapudi</h3>
+							<p>.NET Development Lead</p>
+							<p>IT Department</p>
+							<div class="icons">
+								<ion-icon name="call"></ion-icon>
+								<ion-icon name="mail"></ion-icon>
+								<ion-icon name="text"></ion-icon>
+								<ion-icon name="star"></ion-icon>
+								<ion-icon name="heart"></ion-icon>
+							</div>
+						</div>
+					</div>
+					<div class="employee">
+						<img src="./images/users/akash.jpg" alt="Employee Image" />
+						<div class="employee-details">
+							<h3>Akash Doppalapudi</h3>
+							<p>.NET Development Lead</p>
+							<p>IT Department</p>
+							<div class="icons">
+								<ion-icon name="call"></ion-icon>
+								<ion-icon name="mail"></ion-icon>
+								<ion-icon name="text"></ion-icon>
+								<ion-icon name="star"></ion-icon>
+								<ion-icon name="heart"></ion-icon>
+							</div>
+						</div>
+					</div>
+					<div class="employee">
+						<img src="./images/users/akash.jpg" alt="Employee Image" />
+						<div class="employee-details">
+							<h3>Akash Doppalapudi</h3>
+							<p>.NET Development Lead</p>
+							<p>IT Department</p>
+							<div class="icons">
+								<ion-icon name="call"></ion-icon>
+								<ion-icon name="mail"></ion-icon>
+								<ion-icon name="text"></ion-icon>
+								<ion-icon name="star"></ion-icon>
+								<ion-icon name="heart"></ion-icon>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</main>
 		<script src="./index.js"></script>
