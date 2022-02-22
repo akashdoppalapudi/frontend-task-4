@@ -81,7 +81,7 @@ const getHtmlForEmployeeList = () => {
 	var finalHtml = '';
 	for (idx in displayEmployees) {
 		var emp = displayEmployees[idx];
-		var employee = `<div class="employee">
+		var employee = `<div class="employee" id="${emp.preferredName}" onclick="openEmployeeDetails(this)">
 			<img src="./images/users/${emp.photo}" alt="Employee Image" />
 			<div class="employee-details">
 				<h3>${emp.preferredName}</h3>
@@ -276,6 +276,12 @@ const newEmployeeSubmitHandler = (e) => {
 		newEmployee.preferredName = `${newEmployee.firstName} ${newEmployee.lastName}`;
 	}
 	employees = [...employees, newEmployee];
+	e.target[0].value = '';
+	e.target[1].value = '';
+	e.target[2].value = '';
+	e.target[3].value = '';
+	e.target[7].value = '';
+	e.target[8].value = '';
 	let backdrop = document.querySelector('.backdrop');
 	backdrop.classList.remove('visible');
 	backdrop.classList.add('hidden');
@@ -283,9 +289,9 @@ const newEmployeeSubmitHandler = (e) => {
 	displayAllEmployees();
 };
 
-const openEmployeeDetails = (e) => {
-	let preferredName = e.target.children[1].children[0].textContent;
-	let employee = employees.find((emp) => emp.preferredName === preferredName);
+const openEmployeeDetails = (ele) => {
+	console.log(ele.id);
+	let employee = employees.find((emp) => emp.preferredName === ele.id);
 	let employeeDetailsHtml = getHtmlForEmployeeDetails(employee);
 	let backdrop = document.querySelector('#detailBackdrop');
 	let details = document.querySelector('.details');
@@ -477,13 +483,5 @@ newEmployeeBtn.addEventListener('click', (e) => newEmployeeClickHandler(e));
 cancel.addEventListener('click', (e) => closeNewEmployeeForm(e));
 
 newEmployeeForm.addEventListener('submit', (e) => newEmployeeSubmitHandler(e));
-
-employee.addEventListener('click', (e) => {
-	if (employee.isSameNode(e.target)) {
-		openEmployeeDetails(e);
-	} else {
-		employee.click();
-	}
-});
 
 detailBackdrop.addEventListener('click', (e) => closeEmployeeDetails(e));
