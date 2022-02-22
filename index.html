@@ -8,6 +8,52 @@
 		<title>Saketa - Employee Directory</title>
 	</head>
 	<body>
+		<div class="backdrop hidden">
+			<form class="new-employee" id="newEmployee">
+				<h2>Add New Employee</h2>
+				<label for="firstName">First Name*</label>
+				<input id="firstName" type="text" required />
+				<label for="lastName">Last Name*</label>
+				<input id="lastName" type="text" required />
+				<label for="preferredName">Preferred Name</label>
+				<input id="preferredName" type="text" />
+				<label for="email">Email*</label>
+				<input id="email" type="email" />
+				<label for="jobTitle">Job Title*</label>
+				<select name="jobTitle" id="jobTitle" required>
+					<option value="SharePoint Practice Head">
+						SharePoint Practice Head
+					</option>
+					<option value=".Net Development Lead">.Net Development Lead</option>
+					<option value="Recruiting Expert">Recruiting Expert</option>
+					<option value="BI Developer">BI Developer</option>
+					<option value="Business Analyst">Business Analyst</option>
+				</select>
+				<label for="office">Office*</label>
+				<select name="office" id="office" required>
+					<option value="India">India</option>
+					<option value="Seattle">Seattle</option>
+				</select>
+				<label for="department">Department*</label>
+				<select name="department" id="department" required>
+					<option value="IT">IT</option>
+					<option value="Human Resources">Human Resources</option>
+					<option value="MD">MD</option>
+					<option value="Sales">Sales</option>
+				</select>
+				<label for="phoneNumber">Phone Number*</label>
+				<input id="phoneNumber" type="tel" pattern="^\d{10}$" required />
+				<label for="skypeId">Skype ID*</label>
+				<input id="skypeId" type="text" />
+				<div class="button-group">
+					<button class="submit" type="submit">Submit</button>
+					<button class="cancel">Cancel</button>
+				</div>
+			</form>
+		</div>
+		<div class="detail-backdrop hidden" id="detailBackdrop">
+			<div class="details"></div>
+		</div>
 		<header>
 			<div class="brand">
 				<img src="./images/logo.png" alt="Logo" />
@@ -146,83 +192,7 @@
 					<span>Note : </span>Please use the advance filter options to refine
 					your results.
 				</p>
-				<div class="employee-list">
-					<div class="employee">
-						<img src="./images/users/akash.jpg" alt="Employee Image" />
-						<div class="employee-details">
-							<h3>Akash Doppalapudi</h3>
-							<p>.NET Development Lead</p>
-							<p>IT Department</p>
-							<div class="icons">
-								<ion-icon name="call"></ion-icon>
-								<ion-icon name="mail"></ion-icon>
-								<ion-icon name="text"></ion-icon>
-								<ion-icon name="star"></ion-icon>
-								<ion-icon name="heart"></ion-icon>
-							</div>
-						</div>
-					</div>
-					<div class="employee">
-						<img src="./images/users/akash.jpg" alt="Employee Image" />
-						<div class="employee-details">
-							<h3>Akash Doppalapudi</h3>
-							<p>.NET Development Lead</p>
-							<p>IT Department</p>
-							<div class="icons">
-								<ion-icon name="call"></ion-icon>
-								<ion-icon name="mail"></ion-icon>
-								<ion-icon name="text"></ion-icon>
-								<ion-icon name="star"></ion-icon>
-								<ion-icon name="heart"></ion-icon>
-							</div>
-						</div>
-					</div>
-					<div class="employee">
-						<img src="./images/users/akash.jpg" alt="Employee Image" />
-						<div class="employee-details">
-							<h3>Akash Doppalapudi</h3>
-							<p>.NET Development Lead</p>
-							<p>IT Department</p>
-							<div class="icons">
-								<ion-icon name="call"></ion-icon>
-								<ion-icon name="mail"></ion-icon>
-								<ion-icon name="text"></ion-icon>
-								<ion-icon name="star"></ion-icon>
-								<ion-icon name="heart"></ion-icon>
-							</div>
-						</div>
-					</div>
-					<div class="employee">
-						<img src="./images/users/akash.jpg" alt="Employee Image" />
-						<div class="employee-details">
-							<h3>Akash Doppalapudi</h3>
-							<p>.NET Development Lead</p>
-							<p>IT Department</p>
-							<div class="icons">
-								<ion-icon name="call"></ion-icon>
-								<ion-icon name="mail"></ion-icon>
-								<ion-icon name="text"></ion-icon>
-								<ion-icon name="star"></ion-icon>
-								<ion-icon name="heart"></ion-icon>
-							</div>
-						</div>
-					</div>
-					<div class="employee">
-						<img src="./images/users/akash.jpg" alt="Employee Image" />
-						<div class="employee-details">
-							<h3>Akash Doppalapudi</h3>
-							<p>.NET Development Lead</p>
-							<p>IT Department</p>
-							<div class="icons">
-								<ion-icon name="call"></ion-icon>
-								<ion-icon name="mail"></ion-icon>
-								<ion-icon name="text"></ion-icon>
-								<ion-icon name="star"></ion-icon>
-								<ion-icon name="heart"></ion-icon>
-							</div>
-						</div>
-					</div>
-				</div>
+				<div class="employee-list"></div>
 			</div>
 		</main>
 		<script src="./index.js"></script>

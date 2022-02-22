@@ -229,6 +229,7 @@ label {
 	align-items: center;
 	padding: 0.5em;
 	margin-bottom: 10px;
+	cursor: context-menu;
 }
 
 .employee:hover {
@@ -256,4 +257,110 @@ label {
 
 .employee-details .icons ion-icon {
 	color: #a9a8a8;
+}
+
+.backdrop {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 999;
+	height: 100%;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.detail-backdrop {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 999;
+	height: 100%;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.details {
+	margin: 3% auto 0 auto;
+	width: 23%;
+	height: fit-content;
+	padding: 1% 1% 0.5% 1%;
+	background: #e8e9e8;
+	position: relative;
+}
+
+.details img {
+	width: 100%;
+}
+
+.detail {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	margin: 5px 0 0 5px;
+}
+
+.details h1 {
+	text-align: center;
+}
+
+.detail p {
+	font-size: 1.1em;
+	margin-left: 3px;
+}
+
+.hidden {
+	display: none;
+}
+
+.visible {
+	display: block;
+}
+
+.new-employee {
+	margin: 5% auto 0 auto;
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	justify-content: space-around;
+	background: #fff;
+	padding: 2% 0;
+	border: 1px solid #737373;
+}
+
+.new-employee label {
+	margin: 0 auto 1% 15%;
+}
+
+.new-employee input {
+	width: 70%;
+	margin-bottom: 2%;
+	border: 1px solid #737373;
+}
+
+.button-group {
+	width: 50%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.button-group .submit {
+	background: #0097fd;
+	color: #fff;
+	border: none;
+	padding: 3% 8%;
+}
+
+.button-group .cancel {
+	background: #eb118e;
+	color: #fff;
+	border: none;
+	padding: 3% 8%;
+}
+
+.button-group .cancel:hover {
+	background: #eb11a4;
+}
+
+.button-group .cancel:active {
+	background: #eb1178;
 }
