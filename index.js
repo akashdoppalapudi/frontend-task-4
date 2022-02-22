@@ -1,5 +1,6 @@
 let employees = [
 	{
+		id: '1645555957234',
 		firstName: 'Akash',
 		lastName: 'Doppalapudi',
 		preferredName: 'Akash Doppalapudi',
@@ -81,7 +82,7 @@ const getHtmlForEmployeeList = () => {
 	var finalHtml = '';
 	for (idx in displayEmployees) {
 		var emp = displayEmployees[idx];
-		var employee = `<div class="employee" id="${emp.preferredName}" onclick="openEmployeeDetails(this)">
+		var employee = `<div class="employee" id="${emp.id}" onclick="openEmployeeDetails(this)">
 			<img src="./images/users/${emp.photo}" alt="Employee Image" />
 			<div class="employee-details">
 				<h3>${emp.preferredName}</h3>
@@ -136,7 +137,12 @@ const getHtmlForEmployeeDetails = (employee) => {
 	<div class="detail">
 		<h3>Skype ID :</h3>
 		<p>${employee.skypeId}</p>
-	</div>`;
+	</div>
+	<div class="details-button-group">
+		<button class="edit" id="${employee.id}" onclick="newEmployeeClickHandler('edit', this.id)">Edit</button>
+		<button class="delete" id="${employee.id}" onclick="deleteEmployee(this.id)">Delete</delete>
+	</div>
+	`;
 
 	return finalHtml;
 };
@@ -146,8 +152,7 @@ const renderEmployeeList = () => {
 	employeeList.innerHTML = getHtmlForEmployeeList();
 };
 
-const clearSearch = (e) => {
-	e.preventDefault();
+const clearSearch = () => {
 	let search = document.querySelector('#search-field');
 	search.value = '';
 };
@@ -188,7 +193,7 @@ const updateNoOfEmp = () => {
 	}
 };
 
-const filterEmployeesByAttr = (e, attr, val) => {
+const filterEmployeesByAttr = (attr, val) => {
 	if (attr == 'department') {
 		displayEmployees = employees.filter((emp) => emp.department === val);
 	} else if (attr == 'office') {
@@ -199,7 +204,9 @@ const filterEmployeesByAttr = (e, attr, val) => {
 	renderEmployeeList();
 };
 
-const searchEmployeesByAttr = (e, attr, val) => {
+const searchEmployeesByAttr = (val) => {
+	let filterOptions = document.querySelector('#filters');
+	let attr = filterOptions.value;
 	if (attr == 'firstName') {
 		displayEmployees = employees.filter((emp) =>
 			emp.firstName.toLowerCase().startsWith(val.toLowerCase())
@@ -240,19 +247,51 @@ const searchEmployeesByAttr = (e, attr, val) => {
 	renderEmployeeList();
 };
 
-const displayAllEmployees = (e) => {
+const displayAllEmployees = () => {
 	displayEmployees = employees;
 	renderEmployeeList();
 };
 
-const newEmployeeClickHandler = (e) => {
+const newEmployeeClickHandler = (addOrEdit, empId) => {
 	let backdrop = document.querySelector('.backdrop');
 	backdrop.classList.remove('hidden');
 	backdrop.classList.add('visible');
+	let heading = document.querySelector('.formHeading');
+	let form = document.querySelector('.new-employee');
+	if (addOrEdit == 'add') {
+		heading.innerHTML = 'Add new employee';
+		form.id = 'add';
+	} else if (addOrEdit == 'edit') {
+		heading.innerHTML = 'Edit Employee Details';
+		let detailsBackdrop = document.querySelector('#detailBackdrop');
+		detailsBackdrop.classList.remove('visible');
+		detailsBackdrop.classList.add('hidden');
+		let employee = employees.find((emp) => emp.id === empId);
+		form.id = empId;
+		form[0].value = employee.firstName;
+		form[1].value = employee.lastName;
+		form[2].value = employee.preferredName;
+		form[3].value = employee.email;
+		form[4].value = employee.jobTitle;
+		form[5].value = employee.office;
+		form[6].value = employee.department;
+		form[7].value = employee.phoneNumber;
+		form[8].value = employee.skypeId;
+	}
 };
 
-const closeNewEmployeeForm = (e) => {
-	e.preventDefault();
+const deleteEmployee = (empId) => {
+	employees = employees.filter((emp) => emp.id !== empId);
+	console.log(empId);
+	console.log(employees);
+	let detailsBackdrop = document.querySelector('#detailBackdrop');
+	detailsBackdrop.classList.remove('visible');
+	detailsBackdrop.classList.add('hidden');
+	updateNoOfEmp();
+	displayAllEmployees();
+};
+
+const closeNewEmployeeForm = () => {
 	let backdrop = document.querySelector('.backdrop');
 	backdrop.classList.remove('visible');
 	backdrop.classList.add('hidden');
@@ -260,22 +299,41 @@ const closeNewEmployeeForm = (e) => {
 
 const newEmployeeSubmitHandler = (e) => {
 	e.preventDefault();
-	let newEmployee = {
-		firstName: e.target[0].value,
-		lastName: e.target[1].value,
-		preferredName: e.target[2].value,
-		email: e.target[3].value,
-		jobTitle: e.target[4].value,
-		office: e.target[5].value,
-		department: e.target[6].value,
-		phoneNumber: e.target[7].value,
-		skypeId: e.target[8].value,
-		photo: 'akash.jpg',
-	};
-	if (newEmployee.preferredName === '') {
-		newEmployee.preferredName = `${newEmployee.firstName} ${newEmployee.lastName}`;
+	if (e.target.id === 'add') {
+		let newEmployee = {
+			id: new Date().getTime().toString(),
+			firstName: e.target[0].value,
+			lastName: e.target[1].value,
+			preferredName: e.target[2].value,
+			email: e.target[3].value,
+			jobTitle: e.target[4].value,
+			office: e.target[5].value,
+			department: e.target[6].value,
+			phoneNumber: e.target[7].value,
+			skypeId: e.target[8].value,
+			photo: 'akash.jpg',
+		};
+		if (newEmployee.preferredName === '') {
+			newEmployee.preferredName = `${newEmployee.firstName} ${newEmployee.lastName}`;
+		}
+		employees = [...employees, newEmployee];
+	} else {
+		idx = employees.findIndex((emp) => emp.id == e.target.id);
+		employees[idx].firstName = e.target[0].value;
+		employees[idx].lastName = e.target[1].value;
+		if (e.target[2].value === '' || e.target[2].value == null) {
+			employees[idx].preferredName =
+				e.target[0].value + ' ' + e.target[1].value;
+		} else {
+			employees[idx].preferredName = e.target[2].value;
+		}
+		employees[idx].email = e.target[3].value;
+		employees[idx].jobTitle = e.target[4].value;
+		employees[idx].office = e.target[5].value;
+		employees[idx].department = e.target[6].value;
+		employees[idx].phoneNumber = e.target[7].value;
+		employees[idx].skypeId = e.target[8].value;
 	}
-	employees = [...employees, newEmployee];
 	e.target[0].value = '';
 	e.target[1].value = '';
 	e.target[2].value = '';
@@ -290,8 +348,7 @@ const newEmployeeSubmitHandler = (e) => {
 };
 
 const openEmployeeDetails = (ele) => {
-	console.log(ele.id);
-	let employee = employees.find((emp) => emp.preferredName === ele.id);
+	let employee = employees.find((emp) => emp.id === ele.id);
 	let employeeDetailsHtml = getHtmlForEmployeeDetails(employee);
 	let backdrop = document.querySelector('#detailBackdrop');
 	let details = document.querySelector('.details');
@@ -311,176 +368,9 @@ const closeEmployeeDetails = (e) => {
 updateNoOfEmp();
 renderEmployeeList();
 
-let it = document.querySelector('#it');
-let hr = document.querySelector('#hr');
-let md = document.querySelector('#md');
-let sales = document.querySelector('#sales');
-let seattle = document.querySelector('#seattle');
-let india = document.querySelector('#india');
-let sharePoint = document.querySelector('#sharePoint');
-let dotnet = document.querySelector('#dotnet');
-let recruit = document.querySelector('#recruit');
-let bidev = document.querySelector('#bidev');
-let business = document.querySelector('#business');
-let clear = document.querySelector('.clear');
-let filterOptions = document.querySelector('#filters');
-let search = document.querySelector('#search-field');
-let all = document.querySelector('#all');
-let a = document.querySelector('#a');
-let b = document.querySelector('#b');
-let c = document.querySelector('#c');
-let d = document.querySelector('#d');
-let e = document.querySelector('#e');
-let f = document.querySelector('#f');
-let g = document.querySelector('#g');
-let h = document.querySelector('#h');
-let i = document.querySelector('#i');
-let j = document.querySelector('#j');
-let k = document.querySelector('#k');
-let l = document.querySelector('#l');
-let m = document.querySelector('#m');
-let n = document.querySelector('#n');
-let o = document.querySelector('#o');
-let p = document.querySelector('#p');
-let q = document.querySelector('#q');
-let r = document.querySelector('#r');
-let s = document.querySelector('#s');
-let t = document.querySelector('#t');
-let u = document.querySelector('#u');
-let v = document.querySelector('#v');
-let w = document.querySelector('#w');
-let x = document.querySelector('#x');
-let y = document.querySelector('#y');
-let z = document.querySelector('#z');
-let newEmployeeBtn = document.querySelector('.add-employee-btn');
-let cancel = document.querySelector('.cancel');
-let newEmployeeForm = document.querySelector('#newEmployee');
+let newEmployeeForm = document.querySelector('.new-employee');
 let employee = document.querySelector('.employee');
 let detailBackdrop = document.querySelector('#detailBackdrop');
-
-it.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'department', 'IT')
-);
-hr.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'department', 'Human Resources')
-);
-md.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'department', 'MD')
-);
-sales.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'department', 'Sales')
-);
-seattle.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'office', 'Seattle')
-);
-india.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'office', 'India')
-);
-sharePoint.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'jobTitle', 'SharePoint Practice Head')
-);
-dotnet.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'jobTitle', '.Net Development Lead')
-);
-recruit.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'jobTitle', 'Recruiting Expert')
-);
-bidev.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'jobTitle', 'BI Developer')
-);
-business.addEventListener('click', (e) =>
-	filterEmployeesByAttr(e, 'jobTitle', 'Business Analyst')
-);
-
-clear.addEventListener('click', (e) => clearSearch(e));
-
-all.addEventListener('click', (e) => displayAllEmployees(e));
-a.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'a')
-);
-b.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'b')
-);
-c.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'c')
-);
-d.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'd')
-);
-e.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'e')
-);
-f.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'f')
-);
-g.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'g')
-);
-h.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'h')
-);
-i.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'i')
-);
-j.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'j')
-);
-k.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'k')
-);
-l.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'l')
-);
-m.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'm')
-);
-n.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'n')
-);
-o.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'o')
-);
-p.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'p')
-);
-q.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'q')
-);
-r.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'r')
-);
-s.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 's')
-);
-t.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 't')
-);
-u.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'u')
-);
-v.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'v')
-);
-w.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'w')
-);
-x.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'x')
-);
-y.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'y')
-);
-z.addEventListener('click', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, 'z')
-);
-
-search.addEventListener('input', (e) =>
-	searchEmployeesByAttr(e, filterOptions.value, e.target.value)
-);
-
-newEmployeeBtn.addEventListener('click', (e) => newEmployeeClickHandler(e));
-
-cancel.addEventListener('click', (e) => closeNewEmployeeForm(e));
 
 newEmployeeForm.addEventListener('submit', (e) => newEmployeeSubmitHandler(e));
 
