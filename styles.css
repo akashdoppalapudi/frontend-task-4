@@ -281,7 +281,7 @@ label {
 
 .details {
 	margin: 3% auto 0 auto;
-	width: 23%;
+	width: 20%;
 	height: fit-content;
 	padding: 1% 1% 0.5% 1%;
 	background: #e8e9e8;
@@ -299,13 +299,55 @@ label {
 	margin: 5px 0 0 5px;
 }
 
+.detail h3 {
+	font-size: 0.9em;
+}
+
 .details h1 {
 	text-align: center;
 }
 
 .detail p {
-	font-size: 1.1em;
+	font-size: 1em;
 	margin-left: 3px;
+}
+
+.details-button-group {
+	margin: 4% 0 2% 0;
+	display: flex;
+	justify-content: center;
+}
+
+.edit {
+	background: #0097fd;
+	border: none;
+	padding: 2% 8%;
+	color: #fff;
+	margin: 0 5%;
+}
+
+.edit:hover {
+	background: #00c9fd;
+}
+
+.edit:active {
+	background: #0097fd;
+}
+
+.delete {
+	background: #eb118e;
+	color: #fff;
+	border: none;
+	padding: 2% 8%;
+	margin: 0 5%;
+}
+
+.delete:hover {
+	background: #eb11a4;
+}
+
+.delete:active {
+	background: #eb1178;
 }
 
 .hidden {
@@ -348,6 +390,14 @@ label {
 	color: #fff;
 	border: none;
 	padding: 3% 8%;
+}
+
+.submit:hover {
+	background: #00c9fd;
+}
+
+.submit:active {
+	background: #0097fd;
 }
 
 .button-group .cancel {

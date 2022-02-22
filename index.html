@@ -4,13 +4,13 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./styles.css" />
+		<link rel="stylesheet" href="./styles.css" type="text/css" />
 		<title>Saketa - Employee Directory</title>
 	</head>
 	<body>
 		<div class="backdrop hidden">
-			<form class="new-employee" id="newEmployee">
-				<h2>Add New Employee</h2>
+			<form class="new-employee">
+				<h2 class="formHeading"></h2>
 				<label for="firstName">First Name*</label>
 				<input id="firstName" type="text" required />
 				<label for="lastName">Last Name*</label>
@@ -47,7 +47,9 @@
 				<input id="skypeId" type="text" />
 				<div class="button-group">
 					<button class="submit" type="submit">Submit</button>
-					<button class="cancel">Cancel</button>
+					<button class="cancel" type="button" onclick="closeNewEmployeeForm()">
+						Cancel
+					</button>
 				</div>
 			</form>
 		</div>
@@ -73,17 +75,20 @@
 				<div class="departments">
 					<h2>Departments</h2>
 					<ul>
-						<li id="it">
+						<li id="it" onclick="filterEmployeesByAttr('department', 'IT')">
 							IT <span>(</span><span id="itNo"></span><span>)</span>
 						</li>
-						<li id="hr">
+						<li id="hr" onclick="filterEmployeesByAttr('department', 'HR')">
 							Human Resources <span>(</span><span id="hrNo"></span
 							><span>)</span>
 						</li>
-						<li id="md">
+						<li id="md" onclick="filterEmployeesByAttr('department', 'MD')">
 							MD <span>(</span><span id="mdNo"></span><span>)</span>
 						</li>
-						<li id="sales">
+						<li
+							id="sales"
+							onclick="filterEmployeesByAttr('department', 'Sales')"
+						>
 							Sales <span>(</span><span id="sNo"></span><span>)</span>
 						</li>
 					</ul>
@@ -91,10 +96,13 @@
 				<div class="offices">
 					<h2>Offices</h2>
 					<ul>
-						<li id="seattle">
+						<li
+							id="seattle"
+							onclick="filterEmployeesByAttr('office', 'Seattle')"
+						>
 							Seattle <span>(</span><span id="stNo"></span><span>)</span>
 						</li>
-						<li id="india">
+						<li id="india" onclick="filterEmployeesByAttr('office', 'India')">
 							India <span>(</span><span id="inNo"></span><span>)</span>
 						</li>
 					</ul>
@@ -102,22 +110,37 @@
 				<div class="job-titles">
 					<h2>Job Titles</h2>
 					<ul>
-						<li id="sharePoint">
+						<li
+							id="sharePoint"
+							onclick="filterEmployeesByAttr('jobTitle', 'SharePoint Practice Head')"
+						>
 							SharePoint Practice Head <span>(</span><span id="sphNo"></span
 							><span>)</span>
 						</li>
-						<li id="dotnet">
+						<li
+							id="dotnet"
+							onclick="filterEmployeesByAttr('jobTitle', '.Net Development Lead')"
+						>
 							.Net Development Lead <span>(</span><span id="netNo"></span
 							><span>)</span>
 						</li>
-						<li id="recruit">
+						<li
+							id="recruit"
+							onclick="filterEmployeesByAttr('jobTitle', 'Recruiting Expert')"
+						>
 							Recruiting Expert <span>(</span><span id="recNo"></span
 							><span>)</span>
 						</li>
-						<li id="bidev">
-							Bi Developer <span>(</span><span id="biNo"></span><span>)</span>
+						<li
+							id="bidev"
+							onclick="filterEmployeesByAttr('jobTitle', 'BI Developer')"
+						>
+							BI Developer <span>(</span><span id="biNo"></span><span>)</span>
 						</li>
-						<li id="business">
+						<li
+							id="business"
+							onclick="filterEmployeesByAttr('jobTitle', 'Business Analyst')"
+						>
 							Business Analyst <span>(</span><span id="baNo"></span
 							><span>)</span>
 						</li>
@@ -128,48 +151,207 @@
 			<div class="main-content">
 				<div class="filter">
 					<div class="alphabets">
-						<button id="all" class="alpha-btn">
+						<button id="all" class="alpha-btn" onclick="displayAllEmployees()">
 							<ion-icon name="person"></ion-icon>
 						</button>
-						<button id="a" class="alpha-btn">A</button>
-						<button id="b" class="alpha-btn">B</button>
-						<button id="c" class="alpha-btn">C</button>
-						<button id="d" class="alpha-btn">D</button>
-						<button id="e" class="alpha-btn">E</button>
-						<button id="f" class="alpha-btn">F</button>
-						<button id="g" class="alpha-btn">G</button>
-						<button id="h" class="alpha-btn">H</button>
-						<button id="i" class="alpha-btn">I</button>
-						<button id="j" class="alpha-btn">J</button>
-						<button id="k" class="alpha-btn">K</button>
-						<button id="l" class="alpha-btn">L</button>
-						<button id="m" class="alpha-btn">M</button>
-						<button id="n" class="alpha-btn">N</button>
-						<button id="o" class="alpha-btn">O</button>
-						<button id="p" class="alpha-btn">P</button>
-						<button id="q" class="alpha-btn">Q</button>
-						<button id="r" class="alpha-btn">R</button>
-						<button id="s" class="alpha-btn">S</button>
-						<button id="t" class="alpha-btn">T</button>
-						<button id="u" class="alpha-btn">U</button>
-						<button id="v" class="alpha-btn">V</button>
-						<button id="w" class="alpha-btn">W</button>
-						<button id="x" class="alpha-btn">X</button>
-						<button id="y" class="alpha-btn">Y</button>
-						<button id="z" class="alpha-btn">Z</button>
+						<button
+							id="a"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('a')"
+						>
+							A
+						</button>
+						<button
+							id="b"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('b')"
+						>
+							B
+						</button>
+						<button
+							id="c"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('c')"
+						>
+							C
+						</button>
+						<button
+							id="d"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('d')"
+						>
+							D
+						</button>
+						<button
+							id="e"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('e')"
+						>
+							E
+						</button>
+						<button
+							id="f"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('f')"
+						>
+							F
+						</button>
+						<button
+							id="g"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('g')"
+						>
+							G
+						</button>
+						<button
+							id="h"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('h')"
+						>
+							H
+						</button>
+						<button
+							id="i"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('i')"
+						>
+							I
+						</button>
+						<button
+							id="j"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('j')"
+						>
+							J
+						</button>
+						<button
+							id="k"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('k')"
+						>
+							K
+						</button>
+						<button
+							id="l"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('l')"
+						>
+							L
+						</button>
+						<button
+							id="m"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('m')"
+						>
+							M
+						</button>
+						<button
+							id="n"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('n')"
+						>
+							N
+						</button>
+						<button
+							id="o"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('o')"
+						>
+							O
+						</button>
+						<button
+							id="p"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('p')"
+						>
+							P
+						</button>
+						<button
+							id="q"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('q')"
+						>
+							Q
+						</button>
+						<button
+							id="r"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('r')"
+						>
+							R
+						</button>
+						<button
+							id="s"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('s')"
+						>
+							S
+						</button>
+						<button
+							id="t"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('t')"
+						>
+							T
+						</button>
+						<button
+							id="u"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('u')"
+						>
+							U
+						</button>
+						<button
+							id="v"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('v')"
+						>
+							V
+						</button>
+						<button
+							id="w"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('w')"
+						>
+							W
+						</button>
+						<button
+							id="x"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('x')"
+						>
+							X
+						</button>
+						<button
+							id="y"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('y')"
+						>
+							Y
+						</button>
+						<button
+							id="z"
+							class="alpha-btn"
+							onclick="searchEmployeesByAttr('z')"
+						>
+							Z
+						</button>
 					</div>
 					<div class="search-add">
-						<form class="search">
+						<form class="search" onsubmit="newEmployeeSubmitHandler(e)">
 							<label for="search-text">Search</label>
 							<div class="search-container">
 								<input
 									id="search-field"
 									type="text"
 									placeholder="Enter any keyword"
+									oninput="searchEmployeesByAttr(this.value)"
 								/>
 								<ion-icon class="search-icon" name="search-outline"></ion-icon>
 							</div>
-							<button class="clear">Clear</button>
+							<button class="clear" onclick="clearSearch(); return false;">
+								Clear
+							</button>
 							<label for="filter">Filter by</label>
 							<select name="filters" id="filters">
 								<option value="firstName">First Name</option>
@@ -185,7 +367,12 @@
 								<option value="skypeId">Skype ID</option>
 							</select>
 						</form>
-						<button class="add-employee-btn">Add Employee</button>
+						<button
+							class="add-employee-btn"
+							onclick="newEmployeeClickHandler('add', null)"
+						>
+							Add Employee
+						</button>
 					</div>
 				</div>
 				<p class="note">
