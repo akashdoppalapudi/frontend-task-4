@@ -359,24 +359,32 @@ label {
 }
 
 .new-employee {
-	margin: 5% auto 0 auto;
+	margin: 3% auto 0 auto;
 	display: flex;
 	flex-direction: column;
 	width: 40%;
 	justify-content: space-around;
 	background: #fff;
-	padding: 2% 0;
+	padding: 2% 0 1% 0;
 	border: 1px solid #737373;
 }
 
 .new-employee label {
-	margin: 0 auto 1% 15%;
+	margin: 0 auto 1% 14%;
+	font-weight: bold;
+}
+
+.new-employee select {
+	margin: 0 auto 1% 14%;
+	width: 50%;
+	height: 20px;
 }
 
 .new-employee input {
 	width: 70%;
 	margin-bottom: 2%;
 	border: 1px solid #737373;
+	height: 20px;
 }
 
 .button-group {
@@ -386,6 +394,7 @@ label {
 }
 
 .button-group .submit {
+	margin-top: 1%;
 	background: #0097fd;
 	color: #fff;
 	border: none;
