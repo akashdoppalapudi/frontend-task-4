@@ -281,14 +281,17 @@ const newEmployeeClickHandler = (addOrEdit, empId) => {
 };
 
 const deleteEmployee = (empId) => {
-	employees = employees.filter((emp) => emp.id !== empId);
-	console.log(empId);
-	console.log(employees);
-	let detailsBackdrop = document.querySelector('#detailBackdrop');
-	detailsBackdrop.classList.remove('visible');
-	detailsBackdrop.classList.add('hidden');
-	updateNoOfEmp();
-	displayAllEmployees();
+	var result = confirm('Are You sure? Employee will be deleted.');
+	if (result) {
+		employees = employees.filter((emp) => emp.id !== empId);
+		console.log(empId);
+		console.log(employees);
+		let detailsBackdrop = document.querySelector('#detailBackdrop');
+		detailsBackdrop.classList.remove('visible');
+		detailsBackdrop.classList.add('hidden');
+		updateNoOfEmp();
+		displayAllEmployees();
+	}
 };
 
 const closeNewEmployeeForm = () => {
