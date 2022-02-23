@@ -243,6 +243,7 @@ label {
 
 .employee-details {
 	margin-left: 2%;
+	overflow: hidden;
 }
 
 .employee-details h3 {
@@ -422,4 +423,207 @@ label {
 
 .button-group .cancel:active {
 	background: #eb1178;
+}
+
+@media only screen and (max-width: 1290px) {
+	.title h1 {
+		font-size: 1.7em;
+	}
+
+	.title p {
+		font-size: 1em;
+	}
+
+	.user h1 {
+		font-size: 1.7em;
+	}
+
+	.employee-details h3 {
+		font-size: 0.9em;
+		margin-bottom: 2px;
+	}
+
+	.employee-details p {
+		font-size: 0.75em;
+		margin-bottom: 1px;
+	}
+
+	main {
+		padding-left: 0;
+	}
+
+	.sidebar {
+		width: 25%;
+	}
+
+	.search label {
+		width: 100px;
+	}
+
+	#filters {
+		width: 30%;
+	}
+
+	.details {
+		width: 25%;
+	}
+}
+
+@media only screen and (max-width: 1220px) {
+	.employee-list {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.employee-details {
+		margin-left: 1em;
+	}
+
+	.sidebar {
+		width: 30%;
+	}
+
+	.new-employee {
+		width: 60%;
+		margin-top: 1%;
+	}
+
+	.details {
+		width: 30%;
+		margin-top: 1%;
+	}
+}
+
+@media only screen and (max-width: 1020px) {
+	.sidebar {
+		width: 40%;
+	}
+
+	.employee-list {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.employee-details h3 {
+		font-size: 1.1em;
+	}
+
+	.employee-details p {
+		font-size: 1em;
+	}
+
+	.brand img {
+		width: 200px;
+	}
+
+	header {
+		display: block;
+	}
+
+	.brand {
+		display: block;
+		text-align: center;
+	}
+
+	.user {
+		display: grid;
+		grid-template-columns: auto auto auto;
+		justify-content: center;
+	}
+
+	main {
+		display: block;
+	}
+
+	.sidebar {
+		width: 100%;
+		display: flex;
+		justify-content: space-around;
+		margin-bottom: 5%;
+	}
+
+	.sidebar div:not(:first-child) {
+		margin-top: 0;
+	}
+
+	.view-more {
+		display: none;
+	}
+
+	.employee-list {
+		height: 75vh;
+	}
+}
+
+@media only screen and (max-width: 920px) {
+	.details {
+		width: 40%;
+	}
+}
+
+@media only screen and (max-width: 750px) {
+	.details {
+		width: 50%;
+	}
+
+	.new-employee {
+		width: 80%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.employee-list {
+		grid-template-columns: 1fr;
+	}
+
+	.search-add {
+		display: block;
+		text-align: center;
+	}
+
+	.clear {
+		margin-left: 15%;
+		margin-right: 5%;
+	}
+
+	.add-employee-btn {
+		margin-top: 2%;
+	}
+
+	.details {
+		width: 60%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.sidebar {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.search {
+		display: inline;
+	}
+
+	#search-field {
+		width: 70%;
+		padding-left: 5px;
+		margin-bottom: 1%;
+	}
+
+	.clear {
+		margin: 0 5%;
+	}
+
+	.user h1 {
+		font-size: 1.3em;
+	}
+
+	.details {
+		width: 70%;
+		margin-top: 5%;
+	}
+
+	.new-employee {
+		width: 90%;
+		margin-top: 5%;
+	}
 }
