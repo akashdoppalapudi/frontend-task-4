@@ -1,3 +1,4 @@
+// array of all employees
 let employees = [
 	{
 		id: '1645555957234',
@@ -14,9 +15,10 @@ let employees = [
 	},
 ];
 
-let displayEmployees = employees;
+let displayEmployees = employees; // array of employees that are being displayed
 
 const filters = [
+	// filters based on employee department, office and jobTitle
 	{
 		type: 'department',
 		names: [
@@ -79,6 +81,7 @@ const filters = [
 ];
 
 const getHtmlForEmployeeList = () => {
+	// generated html to display employees
 	var finalHtml = '';
 	for (idx in displayEmployees) {
 		var emp = displayEmployees[idx];
@@ -103,6 +106,7 @@ const getHtmlForEmployeeList = () => {
 };
 
 const getHtmlForEmployeeDetails = (employee) => {
+	// generates html for employee details
 	let finalHtml = `
 	<img src="./images/users/${employee.photo}" alt="User Image" />
 	<h1>${employee.preferredName}</h1>
@@ -148,16 +152,19 @@ const getHtmlForEmployeeDetails = (employee) => {
 };
 
 const renderEmployeeList = () => {
+	// renders employee list html
 	employeeList = document.querySelector('.employee-list');
 	employeeList.innerHTML = getHtmlForEmployeeList();
 };
 
 const clearSearch = () => {
+	// clears the input field for search
 	let search = document.querySelector('#search-field');
 	search.value = '';
 };
 
 const getNoOfEmp = (type, name) => {
+	// gets the number of employees in a certain department, office or a jobTitle
 	let total = 0;
 	if (type == 'department') {
 		for (let idx in employees) {
@@ -182,6 +189,7 @@ const getNoOfEmp = (type, name) => {
 };
 
 const updateNoOfEmp = () => {
+	// updates the number of employees on webpage
 	for (let idx1 in filters) {
 		for (let idx2 in filters[idx1].names) {
 			obj = document.querySelector(filters[idx1].names[idx2].tagSelector);
@@ -194,6 +202,7 @@ const updateNoOfEmp = () => {
 };
 
 const filterEmployeesByAttr = (attr, val) => {
+	// filters employees based on the attributes like department, office and jobTitle
 	if (attr == 'department') {
 		displayEmployees = employees.filter((emp) => emp.department === val);
 	} else if (attr == 'office') {
@@ -205,6 +214,7 @@ const filterEmployeesByAttr = (attr, val) => {
 };
 
 const searchEmployeesByAttr = (val) => {
+	// searches employees based on text input and property like firstName, lastname, etc.,
 	let filterOptions = document.querySelector('#filters');
 	let attr = filterOptions.value;
 	if (attr == 'firstName') {
@@ -248,11 +258,13 @@ const searchEmployeesByAttr = (val) => {
 };
 
 const displayAllEmployees = () => {
+	// displays all the employees without any filters
 	displayEmployees = employees;
 	renderEmployeeList();
 };
 
 const newEmployeeClickHandler = (addOrEdit, empId) => {
+	// opens a form for editing or adding employee details
 	let backdrop = document.querySelector('.backdrop');
 	backdrop.classList.remove('hidden');
 	backdrop.classList.add('visible');
@@ -281,6 +293,7 @@ const newEmployeeClickHandler = (addOrEdit, empId) => {
 };
 
 const deleteEmployee = (empId) => {
+	// deletes an employee with given id
 	var result = confirm('Are You sure? Employee will be deleted.');
 	if (result) {
 		employees = employees.filter((emp) => emp.id !== empId);
@@ -295,12 +308,14 @@ const deleteEmployee = (empId) => {
 };
 
 const closeNewEmployeeForm = () => {
+	// closes the form that is used for adding or editing employee details
 	let backdrop = document.querySelector('.backdrop');
 	backdrop.classList.remove('visible');
 	backdrop.classList.add('hidden');
 };
 
 const newEmployeeSubmitHandler = (e) => {
+	// creates or edits an employee
 	e.preventDefault();
 	if (e.target.id === 'add') {
 		let newEmployee = {
@@ -351,6 +366,7 @@ const newEmployeeSubmitHandler = (e) => {
 };
 
 const openEmployeeDetails = (ele) => {
+	// opens an employee details when clicked
 	let employee = employees.find((emp) => emp.id === ele.id);
 	let employeeDetailsHtml = getHtmlForEmployeeDetails(employee);
 	let backdrop = document.querySelector('#detailBackdrop');
@@ -361,6 +377,7 @@ const openEmployeeDetails = (ele) => {
 };
 
 const closeEmployeeDetails = (e) => {
+	// closes the employee details popup when clicked on the background
 	let backdrop = document.querySelector('#detailBackdrop');
 	if (backdrop.isSameNode(e.target)) {
 		backdrop.classList.remove('visible');
@@ -368,13 +385,16 @@ const closeEmployeeDetails = (e) => {
 	}
 };
 
+/* Updates number of employees and renders employee list for the first time */
 updateNoOfEmp();
 renderEmployeeList();
 
+/* HTML element selector */
 let newEmployeeForm = document.querySelector('.new-employee');
-let employee = document.querySelector('.employee');
 let detailBackdrop = document.querySelector('#detailBackdrop');
 
+/* event for submitting form */
 newEmployeeForm.addEventListener('submit', (e) => newEmployeeSubmitHandler(e));
 
+/* event for closing employee details */
 detailBackdrop.addEventListener('click', (e) => closeEmployeeDetails(e));
